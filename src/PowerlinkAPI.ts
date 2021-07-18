@@ -2,7 +2,8 @@ import { QueryParams, ConvertedQueryParams } from "./types";
 import axios from "axios";
 export class PowerlinkAPI {
   private token: string;
-  private baseUrl = "https://api.powerlink.co.il/api/v2/";
+  private baseUrlV1 = "https://api.powerlink.co.il/api/";
+  private baseUrlV2 = "https://api.powerlink.co.il/api/v2/";
 
   constructor(token: string) {
     this.token = token;
@@ -12,7 +13,7 @@ export class PowerlinkAPI {
     const convertedQueryParams = this.getConvertedParams(params);
     try {
       const response = await axios.post(
-        `${this.baseUrl}/query`,
+        `${this.baseUrlV1}/query`,
         convertedQueryParams,
         {
           headers: { tokenid: this.token },
@@ -27,7 +28,7 @@ export class PowerlinkAPI {
   async update(objectType: number, objectId: string, data: object) {
     try {
       const updatedRecord = await axios.put(
-        `${this.baseUrl}/record/${objectType}/${objectId}`,
+        `${this.baseUrlV2}/record/${objectType}/${objectId}`,
         data,
         { headers: { tokenid: this.token } }
       );
