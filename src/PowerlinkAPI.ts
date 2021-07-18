@@ -1,62 +1,40 @@
+import axios, { AxiosRequestConfig } from "axios";
 import { QueryParams, ConvertedQueryParams } from "./types";
-import axios from "axios";
 export class PowerlinkAPI {
-  private token?: string;
+  private config?: AxiosRequestConfig;
   private baseUrlV1 = "https://api.powerlink.co.il/api/";
   private baseUrlV2 = "https://api.powerlink.co.il/api/v2/";
 
   constructor(token?: string) {
-    this.token = token;
+    this.config = token
+      ? { headers: { tokenid: token } }
+      : { withCredentials: true };
   }
 
   async get(params: QueryParams) {
     const convertedQueryParams = this.getConvertedParams(params);
     try {
-      if (this.token) {
-        const response = await axios.post(
-          `${this.baseUrlV1}/query`,
-          convertedQueryParams,
-          {
-            headers: { tokenid: this.token },
-          }
-        );
-        return response.data;
-      } else {
-        const response = await axios.post(
-          `${this.baseUrlV1}/query`,
-          convertedQueryParams,
-          { withCredentials: true }
-        );
-        return response.data;
-      }
+      const response = await axios.post(
+        `${this.baseUrlV1}/query`,
+        convertedQueryParams,
+        this.config
+      );
+      return response.data;
     } catch (ex) {
       console.log(ex);
     }
   }
 
   async update(objectType: number, objectId: string, data: object) {
-    if (this.token) {
-      try {
-        const updatedRecord = await axios.put(
-          `${this.baseUrlV2}/record/${objectType}/${objectId}`,
-          data,
-          { headers: { tokenid: this.token } }
-        );
-        return updatedRecord.data;
-      } catch (ex) {
-        console.log(ex);
-      }
-    } else {
-      try {
-        const updatedRecord = await axios.put(
-          `${this.baseUrlV2}/record/${objectType}/${objectId}`,
-          data,
-          { withCredentials: true }
-        );
-        return updatedRecord.data;
-      } catch (ex) {
-        console.log(ex);
-      }
+    try {
+      const updatedRecord = await axios.put(
+        `${this.baseUrlV2}/record/${objectType}/${objectId}`,
+        data,
+        this.config
+      );
+      return updatedRecord.data;
+    } catch (ex) {
+      console.log(ex);
     }
   }
 
