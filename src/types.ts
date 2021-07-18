@@ -1,7 +1,7 @@
 export interface QueryParams {
-  pageSize: number;
+  pageSize?: number;
   objectType: number;
-  pageNumber: number;
+  pageNumber?: number;
   sortBy?: string;
   fields?: string;
   conditions?: string;
@@ -10,8 +10,8 @@ export interface QueryParams {
 
 export interface ConvertedQueryParams {
   objecttype: number;
-  page_size: number;
-  page_number: number;
+  page_size?: number;
+  page_number?: number;
   fields?: string;
   query?: string;
   sort_by?: string;
