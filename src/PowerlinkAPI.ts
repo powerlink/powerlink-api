@@ -37,7 +37,7 @@ export class PowerlinkAPI {
     }
   }
 
-  getConvertedParams = ({
+  private getConvertedParams = ({
     objectType,
     pageSize,
     pageNumber,
