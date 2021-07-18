@@ -1,1 +1,1 @@
-export { PowerlinkAPI } from "./PowerlinkApi";
+export { PowerlinkAPI } from "./PowerlinkAPI";
