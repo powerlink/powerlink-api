@@ -24,7 +24,8 @@ export class PowerlinkAPI {
       } else {
         const response = await axios.post(
           `${this.baseUrlV1}/query`,
-          convertedQueryParams
+          convertedQueryParams,
+          { withCredentials: true }
         );
         return response.data;
       }
@@ -49,7 +50,8 @@ export class PowerlinkAPI {
       try {
         const updatedRecord = await axios.put(
           `${this.baseUrlV2}/record/${objectType}/${objectId}`,
-          data
+          data,
+          { withCredentials: true }
         );
         return updatedRecord.data;
       } catch (ex) {
