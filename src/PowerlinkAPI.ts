@@ -2,7 +2,7 @@ import { QueryParams, ConvertedQueryParams } from "./types";
 import axios from "axios";
 export class PowerlinkAPI {
   private token: string;
-  private baseUrl = "https://api.powerlink.co.il/api";
+  private baseUrl = "https://api.powerlink.co.il/api/v2/";
 
   constructor(token: string) {
     this.token = token;
@@ -18,18 +18,23 @@ export class PowerlinkAPI {
           headers: { tokenid: this.token },
         }
       );
-      console.log(response.data);
+      return response.data;
     } catch (ex) {
       console.log(ex);
     }
   }
 
-  update(objectType: number, objectId: string, data: object) {
-    axios.put(
-      `https://api.powerlink.co.il/api/record/${objectType}/${objectId}`,
-      data,
-      { headers: { tokenid: this.token } }
-    );
+  async update(objectType: number, objectId: string, data: object) {
+    try {
+      const updatedRecord = await axios.put(
+        `${this.baseUrl}/record/${objectType}/${objectId}`,
+        data,
+        { headers: { tokenid: this.token } }
+      );
+      return updatedRecord.data;
+    } catch (ex) {
+      console.log(ex);
+    }
   }
 
   getConvertedParams = ({
