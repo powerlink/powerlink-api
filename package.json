@@ -2,7 +2,11 @@
   "name": "powerlink-api",
   "version": "1.0.0",
   "description": "Powerlink API",
+  "types": "dist/index.d.ts",
   "main": "index.js",
+  "files": [
+    "/dist"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node dist/index.js",
