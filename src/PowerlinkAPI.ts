@@ -2,8 +2,8 @@ import { QueryParams, ConvertedQueryParams } from "./types";
 import axios from "axios";
 export class PowerlinkAPI {
   private token?: string;
-  private baseUrlV1 = "https://api.powerlink.co.il/api/";
-  private baseUrlV2 = "https://api.powerlink.co.il/api/v2/";
+  private baseUrlV1 = "https://app.powerlink.co.il/api/";
+  private baseUrlV2 = "https://app.powerlink.co.il/api/v2/";
 
   constructor(token?: string) {
     this.token = token;
