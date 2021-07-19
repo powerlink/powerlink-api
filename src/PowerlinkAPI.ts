@@ -1,25 +1,28 @@
-import axios, { AxiosRequestConfig } from "axios";
+import axios from "axios";
 import { QueryParams, ConvertedQueryParams } from "./types";
 export class PowerlinkAPI {
-  private config?: AxiosRequestConfig;
+  private token?: string;
   private baseUrlV1 = "https://api.powerlink.co.il/api/";
   private baseUrlV2 = "https://api.powerlink.co.il/api/v2/";
 
   constructor(token?: string) {
-    this.config = token
-      ? { headers: { tokenid: token } }
-      : { withCredentials: true };
+    this.token = token;
   }
 
   async get(params: QueryParams) {
     const convertedQueryParams = this.getConvertedParams(params);
     try {
-      const response = await axios.post(
-        `${this.baseUrlV1}/query`,
-        convertedQueryParams,
-        this.config
-      );
-      return response.data;
+      if (this.token) {
+        const response = await axios.post(
+          `${this.baseUrlV1}/query`,
+          convertedQueryParams,
+          { headers: { tokenid: this.token } }
+        );
+        return response.data;
+      } else {
+        const response = await window.parent.plapi.query(params);
+        return response;
+      }
     } catch (ex) {
       console.log(ex);
     }
@@ -27,14 +30,23 @@ export class PowerlinkAPI {
 
   async update(objectType: number, objectId: string, data: object) {
     try {
-      const updatedRecord = await axios.put(
-        `${this.baseUrlV2}/record/${objectType}/${objectId}`,
-        data,
-        this.config
-      );
-      return updatedRecord.data;
+      if (this.token) {
+        const updatedRecord = await axios.put(
+          `${this.baseUrlV2}/record/${objectType}/${objectId}`,
+          data,
+          { headers: { tokenid: this.token } }
+        );
+        return updatedRecord.data;
+      } else {
+        const response = await window.parent.plapi.update(
+          objectType,
+          objectId,
+          data
+        );
+        return response;
+      }
     } catch (ex) {
-      console.log(ex);
+      // console.log(ex);
     }
   }
 
