@@ -27,7 +27,7 @@ export class plapi {
         );
         return response.data;
       } else {
-        const response = await this.api("get", params);
+        const response = await this.api("get", convertedQueryParams);
         // const response = await window.parent.plapi.query(convertedQueryParams);
         return response;
       }
