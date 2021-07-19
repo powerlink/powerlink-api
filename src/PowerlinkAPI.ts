@@ -1,12 +1,19 @@
 import axios from "axios";
+import { v4 } from "uuid";
 import { QueryParams, ConvertedQueryParams } from "./types";
 export class plapi {
   private token?: string;
+  private listeners: { [key: string]: Function };
   private baseUrlV1 = "https://api.powerlink.co.il/api/";
   private baseUrlV2 = "https://api.powerlink.co.il/api/v2/";
+  private isBrowser = typeof window !== "undefined";
 
   constructor(token?: string) {
     this.token = token;
+    this.listeners = {};
+    if (this.isBrowser && this.token) {
+      window?.addEventListener("message", this.messageListener, false);
+    }
   }
 
   async get(params: QueryParams) {
@@ -20,12 +27,35 @@ export class plapi {
         );
         return response.data;
       } else {
-        const response = await window.parent.plapi.query(convertedQueryParams);
+        const response = await this.api("get", params);
+        // const response = await window.parent.plapi.query(convertedQueryParams);
         return response;
       }
     } catch (ex) {
       console.log(ex);
     }
+  }
+
+  async api(method: string, params: object) {
+    return new Promise((resolve, reject) => {
+      const requestId = v4();
+      console.log(method, params, requestId);
+      if (this.isBrowser) {
+        window.parent.postMessage({ method, params, requestId }, "*");
+        this.addListener(
+          requestId,
+          (response: { data: object; error?: string }) => {
+            if (response.error) {
+              reject(response.error);
+            } else {
+              resolve(response.data);
+            }
+          }
+        );
+      } else {
+        reject("Invalid Environment");
+      }
+    });
   }
 
   async update(objectType: number, objectId: string, data: object) {
@@ -76,12 +106,24 @@ export class plapi {
         );
         return response.data;
       } else {
-        const response = await window.parent.plapi.delete(objectType, objectId);
-        return response;
+        // const response = await window.parent.postMessage(
+        //   { type: "delete", url: "" },
+        //   "*"
+        // );
+        // return response;
       }
     } catch (ex) {
       // console.log(ex);
     }
+  }
+
+  addListener(listenerName: string, callback: Function) {
+    this.listeners[listenerName] = callback;
+  }
+
+  messageListener(e: MessageEvent) {
+    const { requestId } = e.data;
+    this.listeners[requestId](e.data);
   }
 
   private getConvertedParams = ({
@@ -104,3 +146,7 @@ export class plapi {
     };
   };
 }
+
+const pl = new plapi();
+
+pl.get({ objectType: 1 });
