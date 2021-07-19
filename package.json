@@ -1,6 +1,6 @@
 {
   "name": "powerlink-api",
-  "version": "1.0.25",
+  "version": "1.0.26",
   "description": "Powerlink API",
   "types": "dist/index.d.ts",
   "main": "dist/index.js",
