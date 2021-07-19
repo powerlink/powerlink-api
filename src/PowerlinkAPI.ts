@@ -146,7 +146,3 @@ export class plapi {
     };
   };
 }
-
-const pl = new plapi();
-
-pl.get({ objectType: 1 });
