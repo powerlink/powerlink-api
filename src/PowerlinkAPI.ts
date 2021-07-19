@@ -49,6 +49,23 @@ export class plapi {
       // console.log(ex);
     }
   }
+  async create(data: object, objectType: number) {
+    try {
+      if (this.token) {
+        const newRecord = await axios.post(
+          `${this.baseUrlV2}/record/${objectType}`,
+          data,
+          { headers: { tokenid: this.token } }
+        );
+        return newRecord.data;
+      } else {
+        const response = await window.parent.plapi.create(data, objectType);
+        return response;
+      }
+    } catch (ex) {
+      // console.log(ex);
+    }
+  }
 
   private getConvertedParams = ({
     objectType,
