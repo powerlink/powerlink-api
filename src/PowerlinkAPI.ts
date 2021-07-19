@@ -1,6 +1,6 @@
 import axios from "axios";
 import { QueryParams, ConvertedQueryParams } from "./types";
-export class PowerlinkAPI {
+export class plapi {
   private token?: string;
   private baseUrlV1 = "https://api.powerlink.co.il/api/";
   private baseUrlV2 = "https://api.powerlink.co.il/api/v2/";
