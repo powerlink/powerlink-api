@@ -20,7 +20,7 @@ export class PowerlinkAPI {
         );
         return response.data;
       } else {
-        const response = await window.parent.plapi.query(params);
+        const response = await window.parent.plapi.query(convertedQueryParams);
         return response;
       }
     } catch (ex) {
