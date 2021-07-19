@@ -11,7 +11,7 @@ export class plapi {
   constructor(token?: string) {
     this.token = token;
     this.listeners = {};
-    if (this.isBrowser && this.token) {
+    if (this.isBrowser && !this.token) {
       window?.addEventListener("message", this.messageListener, false);
     }
   }
@@ -39,7 +39,6 @@ export class plapi {
   async api(method: string, params: object) {
     return new Promise((resolve, reject) => {
       const requestId = v4();
-      console.log(method, params, requestId);
       if (this.isBrowser) {
         window.parent.postMessage({ method, params, requestId }, "*");
         this.addListener(
