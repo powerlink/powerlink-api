@@ -67,6 +67,23 @@ export class plapi {
     }
   }
 
+  async delete(objectType: number, objectId: string) {
+    try {
+      if (this.token) {
+        const response = await axios.delete(
+          `${this.baseUrlV2}/record/${objectType}/${objectId}`,
+          { headers: { tokenid: this.token } }
+        );
+        return response.data;
+      } else {
+        const response = await window.parent.plapi.delete(objectType, objectId);
+        return response;
+      }
+    } catch (ex) {
+      // console.log(ex);
+    }
+  }
+
   private getConvertedParams = ({
     objectType,
     pageSize,
