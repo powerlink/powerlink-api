@@ -40,7 +40,10 @@ export class plapi {
     return new Promise((resolve, reject) => {
       const requestId = v4();
       if (this.isBrowser) {
-        window.parent.postMessage({ method, params, requestId }, "*");
+        window.parent.postMessage(
+          { method, params, requestId, responseEmitter: window.postMessage },
+          "*"
+        );
         this.addListener(
           requestId,
           (response: { data: object; error?: string }) => {
