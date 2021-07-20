@@ -11,6 +11,7 @@ export class plapi {
   constructor(token?: string) {
     this.token = token;
     this.listeners = {};
+    this.messageListener = this.messageListener.bind(this);
     if (this.isBrowser && !this.token) {
       window?.addEventListener("message", this.messageListener, false);
     }
