@@ -121,6 +121,7 @@ export class plapi {
   }
 
   messageListener(e: MessageEvent) {
+    console.log(e);
     const { requestId } = e.data;
     this.listeners[requestId](e.data);
   }
