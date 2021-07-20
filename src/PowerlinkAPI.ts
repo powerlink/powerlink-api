@@ -122,9 +122,12 @@ export class plapi {
   }
 
   messageListener(e: MessageEvent) {
-    console.log(e);
     const { requestId } = e.data;
-    this.listeners[requestId](e.data);
+    try {
+      this.listeners[requestId](e.data);
+    } catch (ex) {
+      console.log(ex);
+    }
   }
 
   private getConvertedParams = ({
