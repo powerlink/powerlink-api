@@ -88,5 +88,4 @@ You can combine both the AND and OR conditions using parenthesis.
 
 **Note**
 
-- AND & OR conditions allow you to test multiple conditions.
-- Don't forget the order of operation parentheses!
+- AND & OR conditions allow you to test multiple conditions (order of operations applies).
