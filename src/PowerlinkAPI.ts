@@ -1,6 +1,6 @@
 import axios from "axios";
 import { v4 } from "uuid";
-import { QueryParams, ConvertedQueryParams } from "./types";
+import { QueryParams, ConvertedQueryParams, ViewRecordsConfig } from "./types";
 export class plapi {
   private token?: string;
   private listeners: { [key: string]: Function };
@@ -67,7 +67,11 @@ export class plapi {
         );
         return updatedRecord.data;
       } else {
-        const response = await this.api("update", {objectType, objectId, data});
+        const response = await this.api("update", {
+          objectType,
+          objectId,
+          data,
+        });
         return response;
       }
     } catch (ex) {
@@ -85,7 +89,7 @@ export class plapi {
         );
         return newRecord.data;
       } else {
-        const response = await this.api("create", {objectType, data});
+        const response = await this.api("create", { objectType, data });
         return response;
       }
     } catch (ex) {
@@ -102,13 +106,32 @@ export class plapi {
         );
         return response.data;
       } else {
-        const response = await this.api("delete", {objectType, objectId});
+        const response = await this.api("delete", { objectType, objectId });
         return response;
       }
     } catch (ex) {
       // console.log(ex);
     }
   }
+
+  async getViews(objectType: number) {
+    try {
+      if (this.token) {
+        const response = await axios.get(
+          `${this.baseUrlV2}/views/${objectType}`,
+          { headers: { tokenid: this.token } }
+        );
+        return response.data;
+      } else {
+        const response = await this.api("getViews", { objectType });
+        return response;
+      }
+    } catch (ex) {
+      // console.log(ex);
+    }
+  }
+
+  async getViewRecords(viewId: string, config: ViewRecordsConfig) {}
 
   private addListener(listenerName: string, callback: Function) {
     this.listeners[listenerName] = callback;

@@ -18,4 +18,24 @@ export interface ConvertedQueryParams {
   sort_type?: sortType;
 }
 
+export interface ViewRecordsConfig {
+  fields: [ViewFields],
+  conditionGroups: [],
+  pageNumber: number,
+  sortBy: ViewSortBy
+}
+
+interface ViewFields {
+  name: string,
+  logicalName: string,
+  fieldObjectType: number,
+  label: string,
+  type: string,
+}
+
+interface ViewSortBy {
+  fieldName: string,
+  type: sortType  
+}
+
 type sortType = "desc" | "asc";
