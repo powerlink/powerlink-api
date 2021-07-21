@@ -67,22 +67,22 @@ api.query({
 
 Query property:
 
-| Operator           | Description                                  | exemple                                                      |
-| ------------------ | -------------------------------------------- | ------------------------------------------------------------ |
-| **=**              | find result equal                            | "query": "(idnumber **=** 1234)"                             |
-| **!=**             | find result not equal                        | "query": "(idnumber **!=** 1234)"                            |
-| **>**              | Greater than                                 | "query": "(age1 **>** age2)"                                 |
-| **<**              | Less than                                    | "query": "(age1 **<** age2)"                                 |
-| **<=**             | Greater than or equal to                     | "query": "(age1 **<=** age2)"                                |
-| **>=**             | Less than or equal to                        | "query": "(age1 **>=** age2)"                                |
-| **OR**             | performs a logical-OR of its bool operands   | "query": "((idnumber = 1234) **OR** (idnumber = 456789))"    |
-| **AND**            | performs a logical-AND of its bool           | "query": "((idnumber = 1234) **AND** (accountname = 'משה'))" |
-| **is-null**        | look for NULL values                         | "query": "(idnumber **is-null** 1234567)"                    |
-| **is-not-null**    | look for not NULL values                     | "query": "(idnumber **is-not-null** 1234567)"                |
-| **start-with**     | find if the string start with the string     | "query": "(idnumber **start-with** 1234567)"                 |
-| **end-with**       | find if the string end with the string       | "query": "(idnumber **end-with** 1234567)"                   |
-| **not-start-with** | find if the string not start with the string | "query": "(idnumber **not-start-with** 1234567)"             |
-| **not-end-with**   | find if the string not end with the string   | "query": "(idnumber **not-end-with** 1234567)"               |
+| Operator           | Description              | exemple                                                      |
+| ------------------ | ------------------------ | ------------------------------------------------------------ |
+| **=**              | Equal                    | "query": "(idnumber **=** 1234)"                             |
+| **!=**             | Not Equal                | "query": "(idnumber **!=** 1234)"                            |
+| **>**              | Greater than             | "query": "(age1 **>** age2)"                                 |
+| **<**              | Less than                | "query": "(age1 **<** age2)"                                 |
+| **<=**             | Greater than or equal to | "query": "(age1 **<=** age2)"                                |
+| **>=**             | Less than or equal to    | "query": "(age1 **>=** age2)"                                |
+| **OR**             | Logical OR               | "query": "((idnumber = 1234) **OR** (idnumber = 456789))"    |
+| **AND**            | Logical And              | "query": "((idnumber = 1234) **AND** (accountname = 'משה'))" |
+| **is-null**        | NULL values              | "query": "(idnumber **is-null** 1234567)"                    |
+| **is-not-null**    | Not NULL values          | "query": "(idnumber **is-not-null** 1234567)"                |
+| **start-with**     | Starts with              | "query": "(idnumber **start-with** 1234567)"                 |
+| **end-with**       | Ends with                | "query": "(idnumber **end-with** 1234567)"                   |
+| **not-start-with** | Doesn't start with       | "query": "(idnumber **not-start-with** 1234567)"             |
+| **not-end-with**   | Doesn't end with         | "query": "(idnumber **not-end-with** 1234567)"               |
 
 You can combine both the AND and OR conditions using parenthesis.
 
