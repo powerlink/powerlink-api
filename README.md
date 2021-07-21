@@ -55,7 +55,7 @@ api.query({
 });
 ```
 
-| Field      | Description                    | exemple                                                                                                                                 |
+| Field      | Description                    | Example                                                                                                                                 |
 | ---------- | ------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------- |
 | objectType | the number of object           | Account = 1, Contact = 2, Cases = 5 (<a href="https://api.powerlink.co.il/_common/viewrecordsystemsettings.aspx?oid=58">See more..</a>) |
 | pageSize   | the number of result per page  | Min:1 Max:500                                                                                                                           |
@@ -67,22 +67,22 @@ api.query({
 
 Query property:
 
-| Operator           | Description              | exemple                                                      |
-| ------------------ | ------------------------ | ------------------------------------------------------------ |
-| **=**              | Equal                    | "query": "(idnumber **=** 1234)"                             |
-| **!=**             | Not Equal                | "query": "(idnumber **!=** 1234)"                            |
-| **>**              | Greater than             | "query": "(age1 **>** age2)"                                 |
-| **<**              | Less than                | "query": "(age1 **<** age2)"                                 |
-| **<=**             | Greater than or equal to | "query": "(age1 **<=** age2)"                                |
-| **>=**             | Less than or equal to    | "query": "(age1 **>=** age2)"                                |
-| **OR**             | Logical OR               | "query": "((idnumber = 1234) **OR** (idnumber = 456789))"    |
-| **AND**            | Logical And              | "query": "((idnumber = 1234) **AND** (accountname = 'משה'))" |
-| **is-null**        | NULL values              | "query": "(idnumber **is-null** 1234567)"                    |
-| **is-not-null**    | Not NULL values          | "query": "(idnumber **is-not-null** 1234567)"                |
-| **start-with**     | Starts with              | "query": "(idnumber **start-with** 1234567)"                 |
-| **end-with**       | Ends with                | "query": "(idnumber **end-with** 1234567)"                   |
-| **not-start-with** | Doesn't start with       | "query": "(idnumber **not-start-with** 1234567)"             |
-| **not-end-with**   | Doesn't end with         | "query": "(idnumber **not-end-with** 1234567)"               |
+| Operator           | Description              | Example                                                    |
+| ------------------ | ------------------------ | ---------------------------------------------------------- |
+| **=**              | Equal                    | query: "(idnumber **=** 1234)"                             |
+| **!=**             | Not Equal                | query: "(idnumber **!=** 1234)"                            |
+| **>**              | Greater than             | query: "(age1 **>** age2)"                                 |
+| **<**              | Less than                | query: "(age1 **<** age2)"                                 |
+| **<=**             | Greater than or equal to | query: "(age1 **<=** age2)"                                |
+| **>=**             | Less than or equal to    | query: "(age1 **>=** age2)"                                |
+| **OR**             | Logical OR               | query: "((idnumber = 1234) **OR** (idnumber = 456789))"    |
+| **AND**            | Logical And              | query: "((idnumber = 1234) **AND** (accountname = 'משה'))" |
+| **is-null**        | NULL values              | query: "(idnumber **is-null** 1234567)"                    |
+| **is-not-null**    | Not NULL values          | query: "(idnumber **is-not-null** 1234567)"                |
+| **start-with**     | Starts with              | query: "(idnumber **start-with** 1234567)"                 |
+| **end-with**       | Ends with                | query: "(idnumber **end-with** 1234567)"                   |
+| **not-start-with** | Doesn't start with       | query: "(idnumber **not-start-with** 1234567)"             |
+| **not-end-with**   | Doesn't end with         | query: "(idnumber **not-end-with** 1234567)"               |
 
 You can combine both the AND and OR conditions using parenthesis.
 
