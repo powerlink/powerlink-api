@@ -96,7 +96,7 @@ export class plapi {
     try {
       if (this.token) {
         const response = await axios.delete(
-          `${this.baseUrlV2}/record/${objectType}/${objectId}`,
+          `${this.baseUrlV1}/record/${objectType}/${objectId}`,
           { headers: { tokenid: this.token } }
         );
         return response.data;
