@@ -17,26 +17,7 @@ export class plapi {
     }
   }
 
-  async query(params: QueryParams) {
-    const convertedQueryParams = this.getConvertedParams(params);
-    try {
-      if (this.token) {
-        const response = await axios.post(
-          `${this.baseUrlV1}/query`,
-          convertedQueryParams,
-          { headers: { tokenid: this.token } }
-        );
-        return response.data;
-      } else {
-        const response = await this.api("query", convertedQueryParams);
-        return response;
-      }
-    } catch (ex) {
-      console.log(ex);
-    }
-  }
-
-  async api(func: string, params: object) {
+  private async api(func: string, params: object) {
     return new Promise((resolve, reject) => {
       const requestId = v4();
       if (this.isBrowser) {
@@ -57,6 +38,25 @@ export class plapi {
     });
   }
 
+  async query(params: QueryParams) {
+    const convertedQueryParams = this.getConvertedParams(params);
+    try {
+      if (this.token) {
+        const response = await axios.post(
+          `${this.baseUrlV1}/query`,
+          convertedQueryParams,
+          { headers: { tokenid: this.token } }
+        );
+        return response.data;
+      } else {
+        const response = await this.api("query", convertedQueryParams);
+        return response;
+      }
+    } catch (ex) {
+      console.log(ex);
+    }
+  }
+
   async update(objectType: number, objectId: string, data: object) {
     try {
       if (this.token) {
@@ -74,7 +74,8 @@ export class plapi {
       console.log(ex);
     }
   }
-  async create(data: object, objectType: number) {
+
+  async create(objectType: number, data: object) {
     try {
       if (this.token) {
         const newRecord = await axios.post(
@@ -84,7 +85,7 @@ export class plapi {
         );
         return newRecord.data;
       } else {
-        const response = await this.api("create", {data, objectType});
+        const response = await this.api("create", {objectType, data});
         return response;
       }
     } catch (ex) {
@@ -109,11 +110,11 @@ export class plapi {
     }
   }
 
-  addListener(listenerName: string, callback: Function) {
+  private addListener(listenerName: string, callback: Function) {
     this.listeners[listenerName] = callback;
   }
 
-  messageListener(e: MessageEvent) {
+  private messageListener(e: MessageEvent) {
     const { requestId } = e.data;
     try {
       this.listeners[requestId](e.data);
