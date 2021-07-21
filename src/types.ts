@@ -19,23 +19,23 @@ export interface ConvertedQueryParams {
 }
 
 export interface ViewRecordsConfig {
-  fields: [ViewFields],
-  conditionGroups: [],
-  pageNumber: number,
-  sortBy: ViewSortBy
+  fields?: [ViewFields];
+  conditionGroups?: [];
+  pageNumber?: number;
+  sortBy?: ViewSortBy;
 }
 
 interface ViewFields {
-  name: string,
-  logicalName: string,
-  fieldObjectType: number,
-  label: string,
-  type: string,
+  name: string;
+  logicalName: string;
+  fieldObjectType: number;
+  label: string;
+  type: string;
 }
 
 interface ViewSortBy {
-  fieldName: string,
-  type: sortType  
+  fieldName: string;
+  type: sortType;
 }
 
 type sortType = "desc" | "asc";

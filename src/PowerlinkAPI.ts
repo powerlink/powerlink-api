@@ -131,7 +131,31 @@ export class plapi {
     }
   }
 
-  async getViewRecords(viewId: string, config: ViewRecordsConfig) {}
+  async getViewRecords(
+    objectType: number,
+    viewId: string,
+    config: ViewRecordsConfig
+  ) {
+    try {
+      if (this.token) {
+        const response = await axios.post(
+          `${this.baseUrlV2}/views/${objectType}/${viewId}`,
+          config,
+          { headers: { tokenid: this.token } }
+        );
+        return response.data;
+      } else {
+        const response = await this.api("getViewRecords", {
+          objectType,
+          viewId,
+          config,
+        });
+        return response;
+      }
+    } catch (ex) {
+      // console.log(ex);
+    }
+  }
 
   private addListener(listenerName: string, callback: Function) {
     this.listeners[listenerName] = callback;
