@@ -9,7 +9,7 @@ This package provides an easy to use API which lets you connect your custom Back
 Backend: `const api = new plapi(TOKEN_ID);`\
 Frontend - Development: `const api = new plapi(TOKEN_ID);`\
 Frontend - Production: `const api = new plapi();`\
-(The Powerlink App's cookie is used instead of a token in a \production environment).
+(The Powerlink App's cookie is used instead of a token in a production environment).
 
 ## Create
 
