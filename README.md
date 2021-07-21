@@ -65,7 +65,7 @@ api.query({
 | sortBy     | Select field to sort by        | accountname/idnumber/telephone1                                                                                                         |
 | sortType   | Select type to sort            | desc/asc                                                                                                                                |
 
-#####Query property:
+####Query property:
 
 | Operator           | Description              | Example                                                    |
 | ------------------ | ------------------------ | ---------------------------------------------------------- |
