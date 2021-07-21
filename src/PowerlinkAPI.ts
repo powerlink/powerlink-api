@@ -17,7 +17,7 @@ export class plapi {
     }
   }
 
-  async get(params: QueryParams) {
+  async query(params: QueryParams) {
     const convertedQueryParams = this.getConvertedParams(params);
     try {
       if (this.token) {
@@ -28,7 +28,7 @@ export class plapi {
         );
         return response.data;
       } else {
-        const response = await this.api("get", convertedQueryParams);
+        const response = await this.api("query", convertedQueryParams);
         return response;
       }
     } catch (ex) {
@@ -36,11 +36,11 @@ export class plapi {
     }
   }
 
-  async api(method: string, params: object) {
+  async api(func: string, params: object) {
     return new Promise((resolve, reject) => {
       const requestId = v4();
       if (this.isBrowser) {
-        window.parent.postMessage({ method, params, requestId }, "*");
+        window.parent.postMessage({ func, params, requestId }, "*");
         this.addListener(
           requestId,
           (response: { data: object; error?: string }) => {
@@ -67,11 +67,7 @@ export class plapi {
         );
         return updatedRecord.data;
       } else {
-        const response = await window.parent.plapi.update(
-          objectType,
-          objectId,
-          data
-        );
+        const response = await this.api("update", {objectType, objectId, data});
         return response;
       }
     } catch (ex) {
@@ -88,7 +84,7 @@ export class plapi {
         );
         return newRecord.data;
       } else {
-        const response = await window.parent.plapi.create(data, objectType);
+        const response = await this.api("create", {data, objectType});
         return response;
       }
     } catch (ex) {
@@ -105,11 +101,8 @@ export class plapi {
         );
         return response.data;
       } else {
-        // const response = await window.parent.postMessage(
-        //   { type: "delete", url: "" },
-        //   "*"
-        // );
-        // return response;
+        const response = await this.api("delete", {objectType, objectId});
+        return response;
       }
     } catch (ex) {
       // console.log(ex);
