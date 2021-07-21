@@ -58,9 +58,9 @@ api.query({
 | Field      | Description                    | Example                                                                                                                                 |
 | ---------- | ------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------- |
 | objectType | the number of object           | Account = 1, Contact = 2, Cases = 5 (<a href="https://api.powerlink.co.il/_common/viewrecordsystemsettings.aspx?oid=58">See more..</a>) |
-| pageSize   | the number of result per page  | Min:1 Max:500                                                                                                                           |
-| pageNumber | the page of result             | start at: 1                                                                                                                             |
-| fields     | which fields to show on result | for all field: \*                                                                                                                       |
+| pageSize   | the number of result per page  | Min: 1 Max: 500                                                                                                                         |
+| pageNumber | the page of result             | Starts at: 1                                                                                                                            |
+| fields     | which fields to show on result | All fields = \*: \*                                                                                                                     |
 | query      | the query you want search      | ((idnumber = 1234) AND (idnumber = 5678))                                                                                               |
 | sortBy     | Select field to sort by        | accountname/idnumber/telephone1                                                                                                         |
 | sortType   | Select type to sort            | desc/asc                                                                                                                                |
