@@ -60,7 +60,7 @@ api.getViewRecords(objectType, viewId, config);
 
 **_Config_**
 
-| Property   | Description       | Example                                                                                              |
+| Property   | Description       | Example                                                                                              |     |
 | ---------- | ----------------- | ---------------------------------------------------------------------------------------------------- | --- |
 | fields     | Additional fields | [ { name: string, logicalName: string, fieldObjectType: number, label: string, type: string }, ... ] |     |
 | pageNumber | Page number       | Starts at: 1                                                                                         |
