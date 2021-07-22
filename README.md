@@ -40,6 +40,32 @@ const api = new plapi();
 api.delete(objectType, objectId);
 ```
 
+## Views
+
+```js
+import { plapi } from "powerlink-api";
+
+const api = new plapi();
+api.getViews(objectType);
+```
+
+## ViewRecords
+
+```js
+import { plapi } from "powerlink-api";
+
+const api = new plapi();
+api.getViewRecords(objectType, viewId, config);
+```
+
+**_Config_**
+
+| Property   | Description       | Example                                                                                              |
+| ---------- | ----------------- | ---------------------------------------------------------------------------------------------------- | --- |
+| fields     | Additional fields | [ { name: string, logicalName: string, fieldObjectType: number, label: string, type: string }, ... ] |     |
+| pageNumber | Page number       | Starts at: 1                                                                                         |
+| sortBy     | Sort by           | accountname/idnumber/telephone1                                                                      |
+
 ## Query
 
 ```js
@@ -57,7 +83,7 @@ api.query({
 });
 ```
 
-| Field      | Description      | Example                                                                                                                                 |
+| Property   | Description      | Example                                                                                                                                 |
 | ---------- | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
 | objectType | Object type      | Account = 1, Contact = 2, Cases = 5 (<a href="https://api.powerlink.co.il/_common/viewrecordsystemsettings.aspx?oid=58">See more..</a>) |
 | pageSize   | Result per page  | Min: 1 Max: 500                                                                                                                         |
@@ -67,7 +93,7 @@ api.query({
 | sortBy     | Sort by          | accountname/idnumber/telephone1                                                                                                         |
 | sortType   | Sort type        | desc/asc                                                                                                                                |
 
-**Query property:**
+**_Query property:_**
 
 | Operator           | Description              | Example                                                    |
 | ------------------ | ------------------------ | ---------------------------------------------------------- |
