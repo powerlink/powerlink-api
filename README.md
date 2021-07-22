@@ -88,7 +88,7 @@ api.query({
 | objectType | Object type      | Account = 1, Contact = 2, Cases = 5 (<a href="https://api.powerlink.co.il/_common/viewrecordsystemsettings.aspx?oid=58">See more..</a>) |
 | pageSize   | Result per page  | Min: 1 Max: 500                                                                                                                         |
 | pageNumber | Page number      | Starts at: 1                                                                                                                            |
-| fields     | Record's fields  | All fields = \*                                                                                                                         |
+| fields     | Record's fields  | All fields = "\*"                                                                                                                       |
 | query      | Query conditions | ((idnumber = 1234) AND (idnumber = 5678))                                                                                               |
 | sortBy     | Sort by          | accountname/idnumber/telephone1                                                                                                         |
 | sortType   | Sort type        | desc/asc                                                                                                                                |
